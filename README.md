@@ -2,7 +2,7 @@
 
 A visually stunning, interactive, and deeply personalized portfolio website designed with a **Notebook & Scrapbook aesthetic**. This project transforms the traditional single-page portfolio into a multi-dimensional digital notebook, complete with handwritten notes, polaroids, and interactive widgets.
 
-✨ **Live Demo:** [jy7ls-portfolio.vercel.app](https://jy7ls-portfolio.vercel.app)
+✨ **Live Demo:** [jy7ls-portfolio.vercel.app](https://jy7lsna.github.io/)
 
 ---
 
