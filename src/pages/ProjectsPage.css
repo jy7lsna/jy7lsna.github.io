@@ -1,0 +1,578 @@
+/* ============================================
+   PROJECTS PAGE — Mac Folder Grid
+   ============================================ */
+.projects-page {
+    width: 100%;
+    height: 100%;
+    padding: 32px 40px 24px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.projects-page__header {
+    margin-bottom: 40px;
+}
+
+.projects-page__tape-label {
+    display: inline-block;
+    font-family: var(--font-handwritten);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--tab-bg);
+    padding: 6px 24px;
+    border: 1px solid var(--tab-border);
+    transform: rotate(-0.5deg);
+}
+
+/* --- Grid --- */
+.projects-page__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px 24px;
+    padding: 10px 10px 0;
+    flex: 1;
+    align-content: start;
+}
+
+/* --- Note --- */
+.projects-page__note {
+    position: absolute;
+    bottom: 18px;
+    right: 28px;
+    font-size: 1rem;
+    color: #bbb;
+    transform: rotate(2deg);
+}
+
+/* ============================================
+   MAC FOLDER COMPONENT
+   ============================================ */
+.mac-folder {
+    --folder-light: hsl(var(--hue), 85%, 65%);
+    --folder-mid: hsl(var(--hue), 80%, 55%);
+    --folder-dark: hsl(var(--hue), 75%, 48%);
+    --folder-shadow: hsla(var(--hue), 70%, 40%, 0.3);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding-top: 35px;
+    /* Space for docs to pop up */
+    animation: folderFadeIn 0.5s ease backwards;
+    animation-delay: var(--folder-delay);
+}
+
+@keyframes folderFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Folder Back (behind documents) --- */
+.mac-folder__back {
+    position: relative;
+    width: 120px;
+    height: 80px;
+    z-index: 1;
+}
+
+.mac-folder__tab {
+    position: absolute;
+    top: 0;
+    left: 8px;
+    width: 38px;
+    height: 16px;
+    background: linear-gradient(180deg, var(--folder-light), var(--folder-mid));
+    border-radius: 6px 6px 0 0;
+    z-index: 1;
+}
+
+.mac-folder__back-panel {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 100%;
+    height: 68px;
+    background: linear-gradient(180deg, var(--folder-mid) 0%, var(--folder-dark) 100%);
+    border-radius: 4px 8px 8px 8px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* --- Documents (between back and front) --- */
+.mac-folder__docs {
+    position: absolute;
+    top: 35px;
+    /* aligned with folder top */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 80px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.mac-folder__doc {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%) translateY(0px);
+    width: 82px;
+    background: white;
+    border-radius: 4px 4px 2px 2px;
+    padding: 7px 9px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    transition:
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.35s ease;
+}
+
+.mac-folder__doc-header {
+    font-family: var(--font-mono);
+    font-size: 0.38rem;
+    color: hsl(var(--hue), 70%, 50%);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+    font-weight: 700;
+}
+
+.mac-folder__doc-title {
+    font-family: var(--font-body);
+    font-size: 0.5rem;
+    font-weight: 600;
+    color: #222;
+    /* Keep dark on white doc */
+    margin-bottom: 5px;
+}
+
+.mac-folder__doc-line {
+    height: 2.5px;
+    background: #ebebeb;
+    border-radius: 2px;
+    margin-bottom: 3px;
+    width: 100%;
+}
+
+.mac-folder__doc-line--short {
+    width: 50%;
+}
+
+.mac-folder__doc-line--mid {
+    width: 75%;
+}
+
+/* HOVER — Documents slide UP out of folder */
+.mac-folder:hover .mac-folder__doc--1 {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-58px);
+    transition-delay: 0s;
+}
+
+.mac-folder:hover .mac-folder__doc--2 {
+    opacity: 0.8;
+    transform: translateX(-54%) translateY(-44px) rotate(4deg);
+    transition-delay: 0.06s;
+}
+
+.mac-folder:hover .mac-folder__doc--3 {
+    opacity: 0.6;
+    transform: translateX(-46%) translateY(-36px) rotate(-3deg);
+    transition-delay: 0.1s;
+}
+
+/* Reverse delay on leave */
+.mac-folder__doc--1 {
+    transition-delay: 0.1s;
+}
+
+.mac-folder__doc--2 {
+    transition-delay: 0.06s;
+}
+
+.mac-folder__doc--3 {
+    transition-delay: 0s;
+}
+
+/* --- Front panel (always on top, clips docs) --- */
+.mac-folder__front {
+    position: absolute;
+    top: 47px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 68px;
+    background: linear-gradient(180deg,
+            hsla(var(--hue), 85%, 70%, 0.7) 0%,
+            hsla(var(--hue), 80%, 55%, 0.8) 60%,
+            hsla(var(--hue), 75%, 48%, 0.9) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 4px 8px 8px 8px;
+    box-shadow:
+        0 4px 14px var(--folder-shadow),
+        0 2px 6px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.06);
+    border: 0.5px solid rgba(255, 255, 255, 0.25);
+    z-index: 3;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mac-folder:hover .mac-folder__front {
+    transform: translateX(-50%) translateY(3px);
+    box-shadow:
+        0 6px 20px var(--folder-shadow),
+        0 4px 10px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.mac-folder__shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.08) 60%, transparent 100%);
+    border-radius: 4px 8px 0 0;
+}
+
+/* ============================================
+   FOLDER LABEL
+   ============================================ */
+.mac-folder__label {
+    text-align: center;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: relative;
+    z-index: 4;
+}
+
+.mac-folder__name {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.mac-folder:hover .mac-folder__name {
+    color: var(--text-primary);
+}
+
+.mac-folder__type {
+    font-size: 0.55rem;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+    .projects-page__grid {
+        gap: 32px 14px;
+        padding-top: 5px;
+    }
+
+    .mac-folder {
+        padding-top: 28px;
+    }
+
+    .mac-folder__back {
+        width: 100px;
+        height: 68px;
+    }
+
+    .mac-folder__back-panel {
+        height: 58px;
+    }
+
+    .mac-folder__front {
+        width: 100px;
+        height: 58px;
+        top: 40px;
+    }
+
+    .mac-folder__tab {
+        width: 32px;
+        height: 14px;
+    }
+
+    .mac-folder__doc {
+        width: 70px;
+        padding: 5px 7px;
+    }
+
+    .mac-folder:hover .mac-folder__doc--1 {
+        transform: translateX(-50%) translateY(-48px);
+    }
+
+    .mac-folder:hover .mac-folder__doc--2 {
+        transform: translateX(-54%) translateY(-36px) rotate(4deg);
+    }
+
+    .mac-folder:hover .mac-folder__doc--3 {
+        transform: translateX(-46%) translateY(-28px) rotate(-3deg);
+    }
+}
+
+@media (max-width: 580px) {
+    .projects-page {
+        padding: 20px 18px 16px;
+    }
+
+    .projects-page__header {
+        margin-bottom: 24px;
+    }
+
+    .projects-page__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px 12px;
+    }
+
+    .mac-folder {
+        padding-top: 24px;
+    }
+
+    .mac-folder__back {
+        width: 88px;
+        height: 60px;
+    }
+
+    .mac-folder__back-panel {
+        height: 50px;
+    }
+
+    .mac-folder__front {
+        width: 88px;
+        height: 50px;
+        top: 36px;
+    }
+
+    .mac-folder__tab {
+        width: 28px;
+        height: 12px;
+    }
+
+    .mac-folder__doc {
+        width: 60px;
+    }
+
+    .mac-folder__name {
+        font-size: 0.6rem;
+    }
+
+    .projects-page__note {
+        display: none;
+    }
+}
+
+/* ============================================
+   PROJECT DETAIL — Text File Modal
+   ============================================ */
+.proj-detail-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: overlayFadeIn 0.25s ease;
+}
+
+@keyframes overlayFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.proj-detail {
+    width: 100%;
+    max-width: 420px;
+    background: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+    animation: modalSlideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Title bar */
+.proj-detail__titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: #2d2d2d;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.proj-detail__dots {
+    display: flex;
+    gap: 6px;
+}
+
+.proj-detail__dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.proj-detail__dot:hover {
+    opacity: 0.8;
+}
+
+.proj-detail__dot--red {
+    background: #ff5f57;
+}
+
+.proj-detail__dot--yellow {
+    background: #febc2e;
+}
+
+.proj-detail__dot--green {
+    background: #28c840;
+}
+
+.proj-detail__filename {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+}
+
+/* Content area */
+.proj-detail__content {
+    padding: 14px 0;
+    max-height: 340px;
+    overflow-y: auto;
+}
+
+.proj-detail__line {
+    display: flex;
+    gap: 12px;
+    padding: 2px 14px;
+    line-height: 1.6;
+    transition: background 0.15s ease;
+}
+
+.proj-detail__line:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.proj-detail__line--header {
+    margin-bottom: 2px;
+}
+
+.proj-detail__line--empty {
+    height: 22px;
+}
+
+.proj-detail__line-num {
+    width: 22px;
+    text-align: right;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+    user-select: none;
+    padding-top: 1px;
+}
+
+.proj-detail__line-text {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.65;
+}
+
+.proj-detail__line-text strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.proj-detail__line-text em {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.proj-detail__tech {
+    font-size: 0.68rem;
+    color: #7ec8e3 !important;
+}
+
+.proj-detail__subtitle {
+    color: rgba(255, 255, 255, 0.55) !important;
+    font-style: italic;
+    font-size: 0.78rem;
+}
+
+.proj-detail__section {
+    color: #c792ea !important;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+}
+
+.proj-detail__link {
+    color: #6eb5ff;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    border-bottom: 1px solid rgba(110, 181, 255, 0.3);
+    transition: border-color 0.2s ease;
+}
+
+.proj-detail__link:hover {
+    border-bottom-color: #6eb5ff;
+}
+
+/* Scrollbar for detail modal */
+.proj-detail__content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.proj-detail__content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.proj-detail__content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}

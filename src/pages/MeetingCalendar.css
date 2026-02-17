@@ -1,0 +1,351 @@
+/* ============================================
+   MEETING CALENDAR — 1:1 Scheduling Page
+   ============================================ */
+.meeting-calendar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.meeting-calendar__title {
+    font-family: 'Caveat', cursive, var(--font-grotesk);
+    font-size: 2rem;
+    font-weight: 700;
+    color: #6e6e73;
+    text-align: center;
+    margin: 0 0 40px 0;
+    /* Increased margin */
+    letter-spacing: 1px;
+}
+
+.calendar-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+/* Calendar Paper Aesthetic */
+.calendar-paper {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    max-width: 380px;
+    /* Increased from 320px */
+    padding: 28px;
+    /* Increased padding */
+    border-radius: 2px;
+    box-shadow:
+        3px 3px 15px rgba(0, 0, 0, 0.06),
+        1px 1px 3px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transform: rotate(-1deg);
+}
+
+.calendar-washi {
+    position: absolute;
+    top: -10px;
+    left: 40px;
+    width: 80px;
+    height: 20px;
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.5), rgba(255, 218, 185, 0.5));
+    border-radius: 1px;
+    transform: rotate(-3deg);
+    z-index: 10;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-paper__grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 15px 15px;
+    pointer-events: none;
+    border-radius: 4px;
+}
+
+/* Header */
+.calendar__header {
+    text-align: center;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.calendar__month-name {
+    font-size: 1.5rem;
+    color: var(--accent-coral);
+    margin: 0;
+    filter: drop-shadow(0 1px 0px rgba(0, 0, 0, 0.1));
+}
+
+/* Grid */
+.calendar__days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 5px;
+}
+
+.calendar__day-name {
+    font-size: 0.85rem;
+    text-align: center;
+    color: #8e8e93;
+    font-weight: 600;
+}
+
+.calendar__body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+}
+
+.calendar__row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.calendar__cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: default;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.calendar__date-number {
+    font-size: 1.1rem;
+    color: #444;
+    z-index: 2;
+}
+
+.calendar__cell--available::after {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    border: 2px solid rgba(0, 122, 255, 0.15);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    /* Hand-drawn circle effect */
+    transition: all 0.3s ease;
+}
+
+.calendar__cell--available:hover::after {
+    border-color: var(--accent-blue);
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(0, 122, 255, 0.05);
+}
+
+.calendar__cell--available {
+    cursor: pointer;
+}
+
+.calendar__cell--available:hover {
+    background: rgba(var(--accent-blue-rgb), 0.1);
+    transform: scale(1.1);
+}
+
+.calendar__cell--today {
+    background: #f2f2f7;
+    font-weight: 700;
+}
+
+.calendar__cell--selected {
+    background: var(--accent-blue) !important;
+}
+
+.calendar__cell--selected .calendar__date-number {
+    color: #fff;
+}
+
+.calendar__busy-dot {
+    position: absolute;
+    bottom: 4px;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-coral);
+    border-radius: 50%;
+}
+
+/* Selection Info */
+.calendar-selection {
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.calendar-info {
+    font-size: 1rem;
+    color: #8e8e93;
+    line-height: 1.4;
+}
+
+.calendar-booking__text {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.calendar-booking__text span {
+    color: var(--accent-blue);
+    font-weight: 700;
+}
+
+.calendar-booking__btn {
+    background: var(--accent-blue);
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-family: var(--font-handwritten);
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 122, 255, 0.2);
+    transition: all 0.2s ease;
+}
+
+.calendar-booking__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 122, 255, 0.3);
+}
+
+/* Time Selection Styling */
+.booking-stepper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.time-selector__label {
+    font-size: 0.9rem;
+    color: #6e6e73;
+    margin-bottom: 8px;
+}
+
+.time-slots-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 0 10px;
+}
+
+.time-slot-btn {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 6px 4px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #444;
+}
+
+.time-slot-btn:hover {
+    background: rgba(var(--accent-blue-rgb), 0.05);
+    border-color: var(--accent-blue);
+    transform: translateY(-1px);
+}
+
+.time-slot-btn--selected {
+    background: var(--accent-blue) !important;
+    color: #fff !important;
+    border-color: var(--accent-blue) !important;
+    box-shadow: 2px 2px 5px rgba(0, 122, 255, 0.2);
+}
+
+.calendar-booking__btn--sent {
+    background: #4DD0A1 !important;
+    box-shadow: 0 4px 10px rgba(77, 208, 161, 0.2) !important;
+    width: 100%;
+}
+
+.confirm-booking {
+    margin-top: 10px;
+    border-top: 1px dashed #eee;
+    padding-top: 15px;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Dark Mode Time Styling --- */
+[data-theme="dark"] .time-slot-btn {
+    background: #3a3a3c;
+    border-color: #48484a;
+    color: #e5e5e7;
+}
+
+[data-theme="dark"] .time-selector__label {
+    color: #888;
+}
+
+[data-theme="dark"] .confirm-booking {
+    border-top-color: #3a3a3c;
+}
+
+
+/* Stickers */
+.calendar-sticker {
+    position: absolute;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* -------- Dark Mode -------- */
+[data-theme="dark"] .calendar-paper {
+    background: #2c2c2e;
+    border-color: #3a3a3c;
+}
+
+[data-theme="dark"] .calendar-paper__grid-overlay {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+[data-theme="dark"] .calendar__date-number {
+    color: #e5e5e7;
+}
+
+[data-theme="dark"] .calendar__cell--today {
+    background: #3a3a3c;
+}
+
+[data-theme="dark"] .calendar-info {
+    color: #888;
+}
+
+[data-theme="dark"] .calendar-booking__text {
+    color: #fff;
+}

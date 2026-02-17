@@ -1,0 +1,242 @@
+/* ============================================
+   CONTACT PAGE — Lined notebook paper
+   ============================================ */
+.contact-page {
+    width: 100%;
+    height: 100%;
+    padding: 32px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-page__header {
+    margin-bottom: 32px;
+}
+
+.contact-page__tape-label {
+    display: inline-block;
+    font-family: var(--font-handwritten);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    background: var(--tab-bg);
+    padding: 6px 32px;
+    transform: rotate(-1.5deg);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--tab-border);
+}
+
+[data-theme="dark"] .contact-page__tape-label {
+    background: #2c2c2e;
+}
+
+.contact-page__paper {
+    position: relative;
+    background: repeating-linear-gradient(transparent, transparent 31px, rgba(255, 255, 255, 0.05) 31px, rgba(255, 255, 255, 0.05) 32px);
+    padding: 10px 20px 10px 55px;
+    border-radius: 4px;
+}
+
+[data-theme="light"] .contact-page__paper {
+    background: repeating-linear-gradient(transparent, transparent 31px, #c8e0f4 31px, #c8e0f4 32px);
+}
+
+.contact-page__margin-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 46px;
+    width: 2px;
+    background: var(--accent-coral);
+    opacity: 0.3;
+}
+
+.contact-page__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-page__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-page__label {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+.contact-page__input,
+.contact-page__textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--paper-grain);
+    font-size: 1rem;
+    color: var(--text-primary);
+    padding: 6px 4px;
+    font-family: var(--font-handwritten);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.contact-page__input:focus,
+.contact-page__textarea:focus {
+    border-bottom-color: var(--accent-blue);
+}
+
+.contact-page__input::placeholder,
+.contact-page__textarea::placeholder {
+    color: var(--text-muted);
+    font-family: var(--font-handwritten);
+}
+
+.contact-page__textarea {
+    resize: none;
+    line-height: 32px;
+}
+
+.contact-page__submit {
+    align-self: flex-start;
+    padding: 8px 24px;
+    margin-top: 8px;
+    background: var(--text-primary);
+    color: var(--paper-color);
+    border: none;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: 1px solid var(--text-primary);
+}
+
+.contact-page__submit:hover {
+    background: #444;
+    transform: translateY(-2px);
+}
+
+.contact-page__submit--sent {
+    background: var(--accent-green) !important;
+    border-color: var(--accent-green) !important;
+    color: white !important;
+}
+
+.contact-page__socials {
+    position: absolute;
+    bottom: 30px;
+    left: 35px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-page__social {
+    text-decoration: none;
+}
+
+.contact-page__social-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #222;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all 0.2s ease;
+}
+
+.contact-page__social:hover .contact-page__social-icon {
+    background: #444;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.contact-page__sticker {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    padding: 12px 16px;
+    background: #fff9c4;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    transform: rotate(3deg);
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+/* Resume download */
+.contact-page__resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    margin-left: 6px;
+    background: #222;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 24px;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    width: fit-content;
+}
+
+.contact-page__resume-btn:hover {
+    background: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.contact-page__resume-btn svg {
+    flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+    .contact-page__paper {
+        padding-left: 45px;
+    }
+}
+
+@media (max-width: 580px) {
+    .contact-page {
+        padding: 20px 24px;
+    }
+
+    .contact-page__paper {
+        padding-left: 36px;
+    }
+
+    .contact-page__margin-line {
+        left: 30px;
+    }
+
+    .contact-page__sticker {
+        display: none;
+    }
+
+    .contact-page__socials {
+        position: static;
+        margin-top: 16px;
+        justify-content: center;
+    }
+
+    .contact-page__resume-btn {
+        position: static;
+        transform: none;
+        margin-top: 12px;
+        align-self: center;
+    }
+
+    .contact-page__resume-btn:hover {
+        transform: translateY(-2px);
+    }
+}

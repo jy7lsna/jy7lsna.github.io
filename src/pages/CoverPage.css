@@ -1,0 +1,325 @@
+/* ============================================
+   COVER PAGE — Enhanced Design
+   ============================================ */
+
+.cover-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Tape strip at top */
+.cover-page__tape {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-1deg);
+    width: 180px;
+    height: 28px;
+    background: rgba(255, 255, 230, 0.6);
+    border: 1px solid rgba(200, 190, 160, 0.4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Content */
+.cover-page__content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+.cover-page__badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    background: rgba(128, 128, 128, 0.08);
+    padding: 6px 20px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+/* --- Title --- */
+.cover-page__title {
+    font-family: var(--font-handwritten);
+    font-size: 4.5rem;
+    font-weight: 900 !important;
+    color: var(--text-primary) !important;
+    line-height: 1;
+    margin-bottom: 0;
+    letter-spacing: -1px;
+    -webkit-text-stroke: 0.5px #000;
+}
+
+.cover-page__at {
+    color: #7aafdb !important;
+    font-weight: 900 !important;
+    -webkit-text-stroke: 0.5px #7aafdb;
+}
+
+/* Decorative rule under title */
+.cover-page__title-rule {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #7aafdb, #a8d0f0);
+    border-radius: 2px;
+    margin: 18px 0 22px;
+    transform-origin: center;
+}
+
+/* --- Subtitle --- */
+.cover-page__subtitle {
+    font-family: var(--font-grotesk);
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    min-height: 1.5em;
+    text-align: center;
+    width: 100%;
+}
+
+.cover-page__cursor {
+    display: inline-block;
+    color: #7aafdb;
+    font-weight: 300;
+    animation: cursorBlink 1s step-end infinite;
+    margin-left: 1px;
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.cover-page__meta {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+}
+
+.cover-page__author {
+    font-family: var(--font-handwritten);
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+    transform: rotate(-1.5deg);
+    opacity: 0.9;
+}
+
+.cover-page__meta-sep {
+    margin: 0 10px;
+    opacity: 0.4;
+}
+
+.cover-page__arrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: #aaa;
+    letter-spacing: 1px;
+    cursor: default;
+    user-select: none;
+}
+
+/* ---- Decorative dots ---- */
+.cover-page__decor {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.cover-page__dot {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.cover-page__dot--1 {
+    width: 200px;
+    height: 200px;
+    background: var(--accent-blue);
+    top: -40px;
+    right: -60px;
+    opacity: 0.12;
+}
+
+.cover-page__dot--2 {
+    width: 140px;
+    height: 140px;
+    background: var(--accent-coral);
+    bottom: 60px;
+    left: -40px;
+    opacity: 0.1;
+}
+
+.cover-page__dot--3 {
+    width: 100px;
+    height: 100px;
+    background: var(--accent-amber);
+    bottom: -30px;
+    right: 80px;
+    opacity: 0.12;
+}
+
+.cover-page__dot--4 {
+    width: 80px;
+    height: 80px;
+    background: var(--accent-purple);
+    top: 120px;
+    left: 40px;
+    opacity: 0.08;
+}
+
+/* Decorative lines */
+.cover-page__line {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.cover-page__line--1 {
+    width: 1px;
+    height: 120px;
+    top: 100px;
+    right: 80px;
+}
+
+.cover-page__line--2 {
+    width: 80px;
+    height: 1px;
+    bottom: 120px;
+    left: 60px;
+}
+
+.cover-page__line--3 {
+    width: 1px;
+    height: 80px;
+    bottom: 180px;
+    left: 100px;
+}
+
+/* Sticker decorations */
+.cover-page__sticker {
+    position: absolute;
+    user-select: none;
+}
+
+.cover-page__sticker--star {
+    top: 130px;
+    right: 70px;
+    font-size: 1.6rem;
+    transform: rotate(15deg);
+    color: var(--accent-amber);
+    opacity: 0.4;
+}
+
+.cover-page__sticker--heart {
+    bottom: 110px;
+    left: 55px;
+    font-size: 1.4rem;
+    transform: rotate(-10deg);
+    color: var(--accent-coral);
+    opacity: 0.35;
+}
+
+.cover-page__sticker--sparkle {
+    top: 220px;
+    left: 80px;
+    font-size: 1rem;
+    transform: rotate(25deg);
+    color: var(--accent-blue);
+    opacity: 0.3;
+    animation: sparkleFloat 3s ease-in-out infinite;
+}
+
+@keyframes sparkleFloat {
+
+    0%,
+    100% {
+        transform: rotate(25deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(25deg) translateY(-6px);
+    }
+}
+
+/* Paper clip */
+.cover-page__paperclip {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    width: 20px;
+    height: 50px;
+    border: 2px solid #bbb;
+    border-radius: 10px 10px 0 0;
+    border-bottom: none;
+    opacity: 0.35;
+}
+
+.cover-page__paperclip::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 3px;
+    width: 14px;
+    height: 30px;
+    border: 2px solid #bbb;
+    border-radius: 7px 7px 0 0;
+    border-bottom: none;
+}
+
+/* Corner fold */
+.cover-page__corner-fold {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--paper-color-dark) 50%, transparent 50%);
+    box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .cover-page__title {
+        font-size: 3.5rem;
+    }
+
+    .cover-page {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 580px) {
+    .cover-page__title {
+        font-size: 2.8rem;
+    }
+
+    .cover-page__subtitle {
+        font-size: 0.8rem;
+    }
+}

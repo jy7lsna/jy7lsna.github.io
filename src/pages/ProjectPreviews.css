@@ -1,0 +1,211 @@
+/* ============================================
+   PROJECT PREVIEWS — Mini Browser Cards
+   ============================================ */
+.project-previews {
+    width: 100%;
+    height: 100%;
+    padding: 16px 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-previews__title {
+    font-family: 'Caveat', cursive, var(--font-grotesk);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #6e6e73;
+    text-align: center;
+    margin: 0 0 8px 0;
+    letter-spacing: 1px;
+}
+
+.project-previews__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    flex: 1;
+}
+
+/* Individual Preview Card */
+.preview-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.08),
+        0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-decoration: none;
+    cursor: pointer;
+    background: #fff;
+}
+
+.preview-card:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.12),
+        0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* Browser Chrome Bar */
+.preview-card__chrome {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 6px;
+    background: #f5f5f7;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.preview-card__dots {
+    display: flex;
+    gap: 3px;
+    flex-shrink: 0;
+}
+
+.preview-card__dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+}
+
+.preview-card__dot--red {
+    background: #ff5f57;
+}
+
+.preview-card__dot--yellow {
+    background: #febc2e;
+}
+
+.preview-card__dot--green {
+    background: #28c840;
+}
+
+.preview-card__url {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex: 1;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 0.4rem;
+    font-family: var(--font-mono, 'Space Mono', monospace);
+    color: #8e8e93;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Website Preview Viewport */
+.preview-card__viewport {
+    flex: 1;
+    min-height: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Skeleton UI placeholder */
+.preview-card__skeleton {
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 100%;
+}
+
+.skeleton__nav {
+    height: 6px;
+    border-radius: 2px;
+    width: 100%;
+    opacity: 0.6;
+}
+
+.skeleton__hero {
+    height: 20px;
+    border-radius: 3px;
+    width: 80%;
+    opacity: 0.5;
+}
+
+.skeleton__cols {
+    display: flex;
+    gap: 4px;
+    flex: 1;
+}
+
+.skeleton__col {
+    flex: 1;
+    border-radius: 3px;
+    opacity: 0.4;
+}
+
+/* Card Label */
+.preview-card__label {
+    padding: 4px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+}
+
+.preview-card__name {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.5rem;
+    font-weight: 600;
+    color: #1c1c1e;
+}
+
+.preview-card__type {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.4rem;
+    color: #8e8e93;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* -------- Dark Mode -------- */
+[data-theme="dark"] .project-previews__title {
+    color: #aaa;
+}
+
+[data-theme="dark"] .preview-card {
+    background: #2c2c2e;
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.3),
+        0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .preview-card:hover {
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .preview-card__chrome {
+    background: #1c1c1e;
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .preview-card__url {
+    background: rgba(255, 255, 255, 0.06);
+    color: #666;
+}
+
+[data-theme="dark"] .preview-card__viewport {
+    filter: brightness(0.7) saturate(0.8);
+}
+
+[data-theme="dark"] .preview-card__label {
+    background: #2c2c2e;
+}
+
+[data-theme="dark"] .preview-card__name {
+    color: #e5e5e7;
+}
+
+[data-theme="dark"] .preview-card__type {
+    color: #888;
+}

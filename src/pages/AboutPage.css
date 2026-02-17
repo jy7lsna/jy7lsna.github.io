@@ -1,0 +1,1116 @@
+/* ============================================
+   ABOUT PAGE — Clean Layout + macOS Widgets
+   ============================================ */
+.about-page {
+    width: 100%;
+    height: 100%;
+    padding: 24px 40px;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-page__header {
+    margin-bottom: 16px;
+}
+
+.about-page__tape-label {
+    display: inline-block;
+    font-family: var(--font-handwritten);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    background: var(--tab-bg);
+    padding: 6px 28px;
+    transform: rotate(-1deg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--tab-border);
+}
+
+/* --- Main Layout --- */
+.about-page__content {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 48px;
+    flex: 1;
+    align-items: start;
+}
+
+.about-page__left {
+    display: flex;
+    flex-direction: column;
+    padding-top: 6px;
+}
+
+.about-page__photo-container {
+    position: relative;
+    align-self: flex-start;
+    margin-bottom: 16px;
+    transform: rotate(-2deg);
+}
+
+.about-page__polaroid {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    padding: 8px 8px 20px 8px;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.9);
+
+    transform: rotate(-1deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-page__polaroid:hover {
+    transform: rotate(0deg) scale(1.02);
+    z-index: 2;
+}
+
+.about-page__img-placeholder {
+    width: 130px;
+    height: 130px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-image: url('../assets/profile.jpg');
+    background-size: cover;
+    background-position: top center;
+}
+
+.about-page__avatar {
+    font-size: 2.5rem;
+    display: none;
+}
+
+.about-page__img-placeholder:empty {
+    background: #e0e0e0;
+}
+
+.about-page__img-placeholder:empty::after {
+    content: "📷";
+    font-size: 2.5rem;
+}
+
+.about-page__caption {
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.about-page__washi-tape-1 {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 80px;
+    height: 20px;
+    background: rgba(255, 200, 200, 0.6);
+    opacity: 0.8;
+    z-index: 3;
+}
+
+/* Name / Intro */
+.about-page__intro {
+    margin-bottom: 16px;
+}
+
+.about-page__name {
+    font-family: var(--font-handwritten);
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: 4px;
+    white-space: nowrap;
+}
+
+.about-page__role {
+    font-family: var(--font-grotesk);
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.about-page__divider {
+    width: 40px;
+    height: 2.5px;
+    background: var(--accent-blue);
+    margin-top: 6px;
+}
+
+/* Bio */
+.about-page__bio {
+    font-family: var(--font-grotesk);
+    font-size: 0.76rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.about-page__bio p {
+    margin-bottom: 12px;
+}
+
+.about-page__bio strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Resume download */
+.about-page__resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    padding: 8px 16px;
+    background: rgba(34, 34, 34, 0.85);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 20px;
+
+    transition: all 0.25s ease;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.12),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.08);
+    width: fit-content;
+}
+
+.about-page__resume-btn:hover {
+    background: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.about-page__resume-btn svg {
+    flex-shrink: 0;
+}
+
+/* --- Right Column --- */
+.about-page__right {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-page__widgets {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.about-page__widget-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* ============================================
+   SPOTIFY MINI PLAYER — Theme-Aware
+   ============================================ */
+.spotify-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(245, 245, 247, 0.65);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.06),
+        0 4px 12px rgba(0, 0, 0, 0.05),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.9);
+    transition: transform 0.2s ease, box-shadow 0.25s ease;
+    cursor: default;
+}
+
+.spotify-mini:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.1),
+        0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.spotify-mini__album {
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.spotify-mini__art {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.spotify-mini__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.spotify-mini__art--playing .spotify-mini__img {
+    transform: scale(1.1);
+}
+
+.spotify-mini__art--playing {
+    animation: spotifyGlow 2s ease-in-out infinite;
+}
+
+@keyframes spotifyGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 2px 8px rgba(29, 185, 84, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 4px 16px rgba(29, 185, 84, 0.45);
+    }
+}
+
+.spotify-mini__info {
+    flex: 1;
+    min-width: 0;
+}
+
+.spotify-mini__song {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1c1c1e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spotify-mini__artist {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.6rem;
+    color: #6e6e73;
+    margin-bottom: 6px;
+}
+
+.spotify-mini__bar-track {
+    width: 100%;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.spotify-mini__bar-fill {
+    height: 100%;
+    width: 35%;
+    background: #1DB954;
+    border-radius: 2px;
+    transition: width 0.3s;
+}
+
+.spotify-mini__controls {
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.spotify-mini__play {
+    width: 28px;
+    height: 28px;
+    background: #1DB954;
+    border-radius: 50%;
+    padding: 4px;
+    transition: transform 0.15s, background 0.15s;
+}
+
+.spotify-mini__play:hover {
+    transform: scale(1.08);
+    background: #1ed760;
+}
+
+/* Dark mode */
+[data-theme="dark"] .spotify-mini {
+    background: rgba(28, 28, 30, 0.65);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .spotify-mini__song {
+    color: #fff;
+}
+
+[data-theme="dark"] .spotify-mini__artist {
+    color: #b3b3b3;
+}
+
+[data-theme="dark"] .spotify-mini__bar-track {
+    background: #404040;
+}
+
+
+
+/* ============================================
+   macOS WIDGET — Standard Light
+   ============================================ */
+.mac-widget {
+    background: rgba(245, 245, 247, 0.65);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-radius: 12px;
+    padding: 10px 12px 8px;
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.06),
+        0 4px 12px rgba(0, 0, 0, 0.05),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.9);
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
+}
+
+.mac-widget:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.1),
+        0 8px 24px rgba(0, 0, 0, 0.08),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.8);
+}
+
+.mac-widget__header {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+}
+
+.mac-widget__icon-svg {
+    color: #8e8e93;
+    flex-shrink: 0;
+}
+
+.mac-widget__logo {
+    width: 16px;
+    height: 16px;
+}
+
+.mac-widget__book-icon,
+.mac-widget__clock-icon,
+.mac-widget__weather-icon {
+    font-size: 0.75rem;
+}
+
+.mac-widget__label {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', var(--font-grotesk);
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #8e8e93;
+}
+
+/* Clock */
+.mac-widget--clock {
+    text-align: center;
+}
+
+.mac-widget__time {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-bottom: 1px;
+}
+
+.mac-widget__digits {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 1.7rem;
+    font-weight: 300;
+    color: #1c1c1e;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.mac-widget__seconds {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: #8e8e93;
+}
+
+.mac-widget__date {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.55rem;
+    color: #8e8e93;
+}
+
+/* Weather */
+.mac-widget--weather {
+    text-align: center;
+}
+
+.mac-widget__weather-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.mac-widget__temp {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 2rem;
+    font-weight: 200;
+    color: #1c1c1e;
+    line-height: 1;
+}
+
+.mac-widget__weather-details {
+    text-align: left;
+}
+
+.mac-widget__weather-condition {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: #3c3c43;
+    margin-bottom: 1px;
+}
+
+.mac-widget__weather-range {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.52rem;
+    color: #8e8e93;
+}
+
+/* VS Code */
+.mac-widget__vscode-files {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 6px;
+}
+
+.mac-widget__file {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.mac-widget__file--active {
+    background: rgba(0, 122, 204, 0.08);
+}
+
+.mac-widget__file-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.4rem;
+    font-weight: 800;
+    color: white;
+    flex-shrink: 0;
+}
+
+.mac-widget__file-icon--jsx {
+    background: #f7df1e;
+    color: #222;
+}
+
+.mac-widget__file-icon--css {
+    background: #264de4;
+}
+
+.mac-widget__file-name {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    color: #3c3c43;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mac-widget__vscode-status {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    color: #8e8e93;
+}
+
+.mac-widget__status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #34c759;
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* GitHub */
+.mac-widget__github-grid {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 6px;
+}
+
+.mac-widget__github-week {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.mac-widget__github-cell {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    transition: transform 0.15s;
+}
+
+.mac-widget__github-cell:hover {
+    transform: scale(1.3);
+}
+
+.mac-widget__github-cell--0 {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.mac-widget__github-cell--1 {
+    background: #9be9a8;
+}
+
+.mac-widget__github-cell--2 {
+    background: #40c463;
+}
+
+.mac-widget__github-cell--3 {
+    background: #216e39;
+}
+
+.mac-widget__github-stats {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.55rem;
+    color: #8e8e93;
+}
+
+/* Spotify/Goodreads shared */
+.mac-widget__body {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.mac-widget__book-spine {
+    width: 34px;
+    height: 46px;
+    background: linear-gradient(135deg, #8d6e63, #6d4c41);
+    border-radius: 2px 5px 5px 2px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.12);
+    flex-shrink: 0;
+    position: relative;
+}
+
+.mac-widget__book-spine::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.mac-widget__meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.mac-widget__song {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-weight: 600;
+    font-size: 0.72rem;
+    color: #1c1c1e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 1px;
+}
+
+.mac-widget__artist {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.6rem;
+    color: #8e8e93;
+}
+
+.mac-widget__progress-track {
+    width: 100%;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.06);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.mac-widget__progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s linear;
+}
+
+.mac-widget__progress-fill--green {
+    background: #1DB954;
+    width: 35%;
+}
+
+.mac-widget__progress-fill--amber {
+    background: #d4a373;
+}
+
+.mac-widget__progress-fill--active {
+    animation: progressAnim 25s linear infinite;
+}
+
+@keyframes progressAnim {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+.mac-widget__footer {
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.5rem;
+    color: #8e8e93;
+    text-align: right;
+    margin-top: 4px;
+}
+
+/* ---- HABIT TRACKER WIDGET ---- */
+.habit__days-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 4px;
+}
+
+.habit__name-spacer {
+    width: 64px;
+    flex-shrink: 0;
+}
+
+.habit__day-label {
+    flex: 1;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.45rem;
+    font-weight: 600;
+    color: #8e8e93;
+    text-transform: uppercase;
+}
+
+.habit__row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 4px;
+}
+
+.habit__name {
+    width: 64px;
+    flex-shrink: 0;
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.55rem;
+    font-weight: 500;
+    color: #3c3c43;
+    white-space: nowrap;
+}
+
+.habit__cell {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+}
+
+.habit__cell::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0, 0, 0, 0.08);
+    display: block;
+}
+
+.habit__cell--done::before {
+    display: none;
+}
+
+.habit__cell--done {
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: #34c759;
+}
+
+/* ---- SCREEN TIME WIDGET ---- */
+.screentime__bar {
+    display: flex;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    gap: 1px;
+}
+
+.screentime__segment {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.screentime__list {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.screentime__item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: -apple-system, BlinkMacSystemFont, var(--font-grotesk);
+    font-size: 0.5rem;
+}
+
+.screentime__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.screentime__app {
+    color: #3c3c43;
+    flex: 1;
+}
+
+.screentime__time {
+    color: #8e8e93;
+    font-variant-numeric: tabular-nums;
+}
+
+/* --- Link Widgets --- */
+.mac-widget--link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.mac-widget--link:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.1),
+        0 12px 32px rgba(0, 0, 0, 0.1),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.8);
+}
+
+.mac-widget--clickable {
+    cursor: pointer;
+}
+
+.mac-widget__expand {
+    margin-left: auto;
+    font-size: 0.6rem;
+    color: #8e8e93;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.mac-widget:hover .mac-widget__expand {
+    opacity: 1;
+}
+
+/* --- Book Cover --- */
+.mac-widget__book-cover {
+    width: 42px;
+    height: 60px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.mac-widget__cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Habit Modal --- */
+.habit-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    z-index: 20000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.habit-modal__content {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    width: 100%;
+    max-width: 400px;
+    border-radius: 24px;
+    padding: 32px;
+    position: relative;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.2),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.9);
+
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .habit-modal__content {
+    background: rgba(28, 28, 30, 0.75);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.06);
+}
+
+.habit-modal__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #8e8e93;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.habit-modal__close:hover {
+    color: var(--text-primary);
+}
+
+.habit-modal__header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.habit-modal__header h3 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.habit-modal__placeholder {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.habit-modal__streak {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: #fff0f0;
+    color: #ff3b30;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .habit-modal__streak {
+    background: rgba(255, 59, 48, 0.15);
+}
+
+.habit-modal__stats {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.habit-modal__stat {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-grotesk);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.habit-modal__hint {
+    font-family: var(--font-handwritten);
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 10px;
+}
+
+.habit-modal__mini-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 12px;
+}
+
+[data-theme="dark"] .habit-modal__mini-grid {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.habit-modal__mini-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.habit__cell--mini {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.habit__cell--mini:hover {
+    transform: scale(1.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-page__content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .about-page__widget-row {
+        grid-template-columns: 1fr;
+    }
+
+    .about-page__photo-container {
+        align-self: center;
+    }
+
+    .about-page__intro,
+    .about-page__bio {
+        text-align: center;
+    }
+
+    .about-page__divider {
+        margin: 10px auto;
+    }
+}
+
+/* --- Widget Dark Mode Overrides --- */
+[data-theme="dark"] .mac-widget {
+    background: rgba(28, 28, 30, 0.65);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.4),
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 0.5px 0 rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .mac-widget__digits,
+[data-theme="dark"] .mac-widget__temp,
+[data-theme="dark"] .mac-widget__song,
+[data-theme="dark"] .mac-widget__time,
+[data-theme="dark"] .habit__name,
+[data-theme="dark"] .screentime__app {
+    color: #fff;
+}
+
+[data-theme="dark"] .mac-widget__file-name,
+[data-theme="dark"] .mac-widget__weather-condition {
+    color: #e8e8ed;
+}
+
+[data-theme="dark"] .habit__cell::before {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .mac-widget__progress-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .about-page__polaroid {
+    background: rgba(44, 44, 46, 0.8);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .about-page__caption {
+    color: #ddd;
+}

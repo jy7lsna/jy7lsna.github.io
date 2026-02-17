@@ -1,0 +1,160 @@
+/* ============================================
+   APP — Full viewport dark background
+   ============================================ */
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.app__background {
+  position: fixed;
+  inset: 0;
+  background: var(--app-bg);
+  z-index: 0;
+  transition: background 0.8s ease;
+}
+
+/* Animated mesh gradient blobs */
+.app__background::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+  background:
+    radial-gradient(600px circle at 15% 25%, var(--blob-color-1) 0%, transparent 70%),
+    radial-gradient(500px circle at 85% 75%, var(--blob-color-2) 0%, transparent 70%),
+    radial-gradient(700px circle at 50% 50%, var(--blob-color-3) 0%, transparent 60%),
+    radial-gradient(400px circle at 75% 15%, var(--blob-color-4) 0%, transparent 70%),
+    radial-gradient(450px circle at 25% 85%, var(--blob-color-5) 0%, transparent 70%);
+  animation: meshDrift 25s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes meshDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-2%, 1.5%) scale(1.03);
+  }
+
+  100% {
+    transform: translate(1.5%, -1%) scale(0.98);
+  }
+}
+
+/* Subtle film grain effect on background */
+.app__grain {
+  position: fixed;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Entrance animation */
+.app .notebook-wrapper {
+  opacity: 0;
+  transform: translateY(40px) scale(0.96);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.app--loaded .notebook-wrapper {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--app-bg);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.loader--exit {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+.loader__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.loader__content--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.loader__icon {
+  font-size: 3rem;
+  animation: loaderBounce 1s ease-in-out infinite alternate;
+}
+
+@keyframes loaderBounce {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+.loader__title {
+  font-family: var(--font-handwritten);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.loader__at {
+  color: var(--accent-blue);
+}
+
+.loader__name {
+  color: var(--text-primary);
+}
+
+.loader__bar {
+  width: 120px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loader__fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #7aafdb, #a0d2ff);
+  border-radius: 2px;
+  transition: width 1.8s ease-in-out;
+}
+
+.loader__fill--active {
+  width: 100%;
+}

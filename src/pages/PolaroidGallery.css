@@ -1,0 +1,97 @@
+/* ============================================
+   POLAROID GALLERY — Scattered Photo Frames
+   ============================================ */
+.polaroid-gallery {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 16px 18px;
+    overflow: hidden;
+}
+
+.polaroid-gallery__title {
+    font-family: 'Caveat', cursive, var(--font-grotesk);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #6e6e73;
+    text-align: center;
+    margin: 0 0 8px 0;
+    letter-spacing: 1px;
+}
+
+/* Individual Polaroid Frame */
+.polaroid-frame {
+    position: absolute;
+    width: 35%;
+    background: #fff;
+    padding: 6px 6px 22px 6px;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        0 6px 20px rgba(0, 0, 0, 0.06);
+    border-radius: 2px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.polaroid-frame:hover {
+    z-index: 10;
+    transform: rotate(0deg) scale(1.08) !important;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.12),
+        0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Placeholder Image Area */
+.polaroid-frame__image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, #f0f0f2, #e8e8ed);
+    border-radius: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Caption */
+.polaroid-frame__caption {
+    font-family: 'Caveat', cursive, var(--font-grotesk);
+    font-size: 0.6rem;
+    color: #8e8e93;
+    text-align: center;
+    margin-top: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* -------- Dark Mode -------- */
+[data-theme="dark"] .polaroid-gallery__title {
+    color: #aaa;
+}
+
+[data-theme="dark"] .polaroid-frame {
+    background: #2c2c2e;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .polaroid-frame:hover {
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.4),
+        0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .polaroid-frame__image {
+    background: linear-gradient(135deg, #3a3a3c, #2c2c2e);
+}
+
+[data-theme="dark"] .polaroid-frame__image svg {
+    fill: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .polaroid-frame__caption {
+    color: #999;
+}

@@ -1,0 +1,148 @@
+/* ============================================
+   CURRENTLY LEARNING — Progress Cards
+   ============================================ */
+.currently-learning {
+    width: 100%;
+    height: 100%;
+    padding: 16px 52px 16px 36px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.currently-learning__title {
+    font-family: 'Caveat', cursive, var(--font-grotesk);
+    font-size: 1.8rem;
+    /* Increased size */
+    font-weight: 700;
+    color: var(--accent-coral);
+    /* Use accent color */
+    text-align: center;
+    margin: 0 0 30px 0;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.currently-learning__title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 40%;
+    width: 20%;
+    height: 2px;
+    background: rgba(var(--accent-coral-rgb), 0.3);
+    border-radius: 2px;
+}
+
+.currently-learning__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.learning-item {
+    background: transparent;
+    /* Removed background */
+    border-radius: 0;
+    padding: 12px 0;
+    /* Adjusted padding */
+    box-shadow: none;
+    /* Removed shadow */
+    transition: transform 0.2s ease;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
+    /* Soft divider */
+}
+
+.learning-item:last-child {
+    border-bottom: none;
+}
+
+.learning-item:hover {
+    transform: translateX(6px);
+}
+
+.learning-item__header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 5px;
+}
+
+.learning-item__icon {
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.learning-item__name {
+    font-size: 1.1rem;
+    /* Larger font */
+    font-weight: 700;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.learning-item__pct {
+    font-family: var(--font-mono, 'Space Mono', monospace);
+    font-size: 0.55rem;
+    color: #8e8e93;
+    font-weight: 600;
+}
+
+.learning-item__bar {
+    width: 100%;
+    /* Full width */
+    height: 6px;
+    /* Slightly thicker */
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 100px;
+    overflow: hidden;
+    margin: 8px 0 6px 0;
+}
+
+.learning-item__fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.6s ease;
+}
+
+.learning-item__note {
+    font-family: var(--font-handwritten);
+    font-size: 0.85rem;
+    color: #8e8e93;
+    opacity: 0.8;
+}
+
+/* -------- Dark Mode -------- */
+[data-theme="dark"] .currently-learning__title {
+    color: #aaa;
+}
+
+[data-theme="dark"] .learning-item {
+    background: transparent;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .learning-item__bar {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .learning-item__note {
+    color: #777;
+}
+
+.learning-sticker {
+    position: absolute;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.learning-sticker--bulb {
+    bottom: 30px;
+    right: 40px;
+    transform: rotate(15deg);
+    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.05));
+}

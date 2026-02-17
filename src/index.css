@@ -1,0 +1,232 @@
+/* ============================================
+   DESIGN SYSTEM — Spiral Notebook Portfolio
+   ============================================ */
+
+/* --- CSS Reset --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #111111;
+  color: var(--text-primary);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Ccircle cx='8' cy='8' r='4' fill='%23333' fill-opacity='0.6'/%3E%3Ccircle cx='8' cy='8' r='3' fill='%23333' fill-opacity='0.3'/%3E%3C/svg%3E") 8 8, auto;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- CSS Custom Properties --- */
+:root {
+  /* Paper */
+  --paper-color: #fff9f2;
+  /* Soft Pastel Cream */
+  --paper-color-dark: #fcf6ef;
+  --paper-grain: rgba(0, 0, 0, 0.02);
+  --paper-shadow: rgba(0, 0, 0, 0.12);
+
+  /* Spiral */
+  --ring-color-light: #d4d4d4;
+  --ring-color-mid: #aaa;
+  --ring-color-dark: #888;
+  --ring-shadow: rgba(0, 0, 0, 0.35);
+
+  /* Tabs */
+  --tab-bg: #f0ece4;
+  --tab-border: #d5d0c8;
+  --tab-active: #e8e3da;
+  --tab-text: #444;
+
+  /* Accent */
+  --accent-blue: #4a9eff;
+  --accent-purple: #8b5cf6;
+  --accent-green: #22c55e;
+  --accent-coral: #ff6b6b;
+  --accent-amber: #f59e0b;
+
+  /* Pastel Tab Colors */
+  --tab-pink: #ffdae0;
+  --tab-blue: #d0e8ff;
+  --tab-green: #d2f2d4;
+  --tab-orange: #ffe8d1;
+  --tab-yellow: #fff9db;
+
+  /* App Background Blobs (Light - Subtle Pastel) */
+  --app-bg: #fffbf7;
+  /* Cleaner light background */
+  --blob-color-1: rgba(255, 182, 193, 0.2);
+  /* Subtle Pink */
+  --blob-color-2: rgba(173, 216, 230, 0.18);
+  /* Subtle Blue */
+  --blob-color-3: rgba(152, 251, 152, 0.18);
+  /* Subtle Mint */
+  --blob-color-4: rgba(221, 160, 221, 0.18);
+  /* Subtle Lavender */
+  --blob-color-5: rgba(255, 218, 185, 0.2);
+  /* Subtle Peach */
+
+  /* Text */
+  --text-primary: #222;
+  --text-secondary: #555;
+  --text-muted: #999;
+
+  /* Selection handles (like design software) */
+  --handle-color: #2196F3;
+  --handle-size: 6px;
+
+  /* Typography */
+  --font-handwritten: 'Caveat', cursive;
+  --font-body: 'Geist Sans', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-grotesk: 'Space Grotesk', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.25);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.35);
+
+  /* Notebook Dimensions */
+  --notebook-width: 650px;
+  --notebook-height: 820px;
+  --spiral-width: 50px;
+  --tab-width: 48px;
+
+  /* Animation */
+  --flip-duration: 0.7s;
+}
+
+/* --- Dark Theme --- */
+[data-theme="dark"] {
+  --paper-color: #1e1e22;
+  --paper-color-dark: #18181b;
+  --paper-grain: rgba(255, 255, 255, 0.015);
+  --paper-shadow: rgba(0, 0, 0, 0.4);
+
+  --ring-color-light: #555;
+  --ring-color-mid: #444;
+  --ring-color-dark: #333;
+
+  --tab-bg: #1e1e22;
+  --tab-border: #333;
+  --tab-active: #28282d;
+  --tab-text: #ccc;
+
+  --text-primary: #e8e8e8;
+  --text-secondary: #aaa;
+  --text-muted: #777;
+
+  /* App Background */
+  --app-bg: #0a0a0a;
+  --blob-color-1: rgba(100, 60, 180, 0.25);
+  --blob-color-2: rgba(30, 130, 130, 0.2);
+  --blob-color-3: rgba(20, 40, 80, 0.35);
+  --blob-color-4: rgba(60, 40, 120, 0.15);
+  --blob-color-5: rgba(40, 90, 100, 0.15);
+}
+
+/* --- Typography --- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-handwritten);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.handwritten {
+  font-family: var(--font-handwritten);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+/* --- Utilities --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* --- Paper Texture Mixin (applied via class) --- */
+.paper-texture {
+  background-color: var(--paper-color);
+  background-image:
+    repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      var(--paper-grain) 2px,
+      var(--paper-grain) 3px),
+    repeating-linear-gradient(90deg,
+      transparent,
+      transparent 2px,
+      var(--paper-grain) 2px,
+      var(--paper-grain) 3px);
+}
+
+/* --- Selection --- */
+::selection {
+  background: var(--accent-blue);
+  color: white;
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  :root {
+    --notebook-width: 480px;
+    --notebook-height: 640px;
+    --spiral-width: 40px;
+    --tab-width: 40px;
+  }
+}
+
+@media (max-width: 580px) {
+  :root {
+    --notebook-width: 340px;
+    --notebook-height: 520px;
+    --spiral-width: 32px;
+    --tab-width: 34px;
+  }
+}

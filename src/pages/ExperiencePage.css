@@ -1,0 +1,163 @@
+/* ============================================
+   EXPERIENCE PAGE — Professional Work Logs
+   ============================================ */
+.experience-page {
+    width: 100%;
+    height: 100%;
+    padding: 32px 40px;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.experience-page__header {
+    margin-bottom: 32px;
+}
+
+.experience-page__tape-label {
+    display: inline-block;
+    font-family: var(--font-handwritten);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    background: var(--tab-bg);
+    padding: 6px 32px;
+    transform: rotate(1.2deg);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--tab-border);
+}
+
+[data-theme="dark"] .experience-page__tape-label {
+    background: #2c2c2e;
+}
+
+.experience-page__content {
+    position: relative;
+    flex: 1;
+}
+
+.experience-page__logs {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* --- Experience Log Style --- */
+.experience-log {
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid var(--accent-blue);
+}
+
+.experience-log__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+}
+
+.experience-log__company {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.experience-log__period {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.experience-log__role {
+    font-family: var(--font-handwritten);
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+.experience-log__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.experience-log__item {
+    position: relative;
+    padding-left: 18px;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.experience-log__item::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-blue);
+    font-weight: bold;
+}
+
+/* --- Decorations --- */
+.experience-page__decoration {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.experience-page__stamp {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--accent-coral);
+    border: 3px solid var(--accent-coral);
+    padding: 4px 12px;
+    border-radius: 4px;
+    transform: rotate(-15deg);
+    opacity: 0.4;
+    user-select: none;
+}
+
+[data-theme="dark"] .experience-log {
+    border-left-color: rgba(100, 180, 255, 0.4);
+}
+
+[data-theme="dark"] .experience-log__item::before {
+    color: #7ec8e3;
+}
+
+.experience-log__behance {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    font-family: var(--font-handwritten);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 2px 8px;
+    background: rgba(var(--accent-blue-rgb), 0.05);
+    border: 1px dashed var(--accent-blue);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.experience-log__behance:hover {
+    background: rgba(var(--accent-blue-rgb), 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.experience-log__behance svg {
+    flex-shrink: 0;
+}
