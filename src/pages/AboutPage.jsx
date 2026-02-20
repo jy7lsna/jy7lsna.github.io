@@ -35,7 +35,7 @@ function ClockWidget() {
 function WeatherWidget() {
     return (
         <a
-            href="https://www.accuweather.com/en/gb/london/ec4y/weather-forecast/328328"
+            href="https://www.accuweather.com/en/in/delhi/124971/weather-forecast/124971"
             target="_blank"
             rel="noopener noreferrer"
             className="mac-widget mac-widget--weather mac-widget--link"
@@ -45,10 +45,10 @@ function WeatherWidget() {
                 <span className="mac-widget__label">Weather</span>
             </div>
             <div className="mac-widget__weather-body">
-                <div className="mac-widget__temp">26°</div>
+                <div className="mac-widget__temp">24°</div>
                 <div className="mac-widget__weather-details">
-                    <div className="mac-widget__weather-condition">Partly Cloudy</div>
-                    <div className="mac-widget__weather-range">H:31° L:22°</div>
+                    <div className="mac-widget__weather-condition">Sunny</div>
+                    <div className="mac-widget__weather-range">H:29° L:17°</div>
                 </div>
             </div>
         </a>
@@ -312,12 +312,12 @@ export default function AboutPage({ isActive }) {
     ];
 
     const [habits, setHabits] = useState(() => {
-        const saved = localStorage.getItem('portfolio-habits');
+        const saved = localStorage.getItem('Portfolio-habits');
         return saved ? JSON.parse(saved) : initialHabits;
     });
 
     useEffect(() => {
-        localStorage.setItem('portfolio-habits', JSON.stringify(habits));
+        localStorage.setItem('Portfolio-habits', JSON.stringify(habits));
     }, [habits]);
 
     const toggleHabit = (habitIndex, dayIndex) => {
@@ -353,7 +353,7 @@ export default function AboutPage({ isActive }) {
                 {/* Left Column: Photo & Bio */}
                 <div className="about-page__left">
                     <div className="about-page__photo-container">
-                        <div className="about-page__polaroid">
+                        <div className={`about-page__polaroid living-sticker ${isActive ? 'living-sticker--settle' : ''}`}>
                             <div className="about-page__img-placeholder">
                                 <div className="about-page__avatar">
                                     <span>👩‍💻</span>
@@ -361,37 +361,27 @@ export default function AboutPage({ isActive }) {
                             </div>
                             <div className="about-page__caption handwritten">It's me, Hi! 👋</div>
                         </div>
-                        <div className="about-page__washi-tape-1" />
+                        <div className={`about-page__washi-tape-1 living-washi ${isActive ? 'living-washi--settle' : ''}`} />
                     </div>
 
                     <div className="about-page__intro">
                         <h2 className="about-page__name handwritten">Jyolsna Maria Joemon</h2>
-                        <div className="about-page__role">Developer & Designer</div>
+                        <div className="about-page__role"><span className="scribble-highlight" style={{ '--scribble-color': 'var(--tab-blue)' }}>Developer & Designer</span></div>
                         <div className="about-page__divider" />
                     </div>
 
                     <div className="about-page__bio">
                         <p>
-                            I am a multidisciplinary creator who thrives at the intersection of
-                            <strong> logic</strong> and <strong>imagination</strong>. With a passion for building
-                            digital experiences that feel as good as they look — from pixel-perfect
-                            interfaces to robust backend architectures.
+                            I am a multidisciplinary creator who thrives at the <span className="scribble-highlight">intersection of logic and imagination</span>. With a passion for building digital experiences that feel as good as they look, from pixel-perfect interfaces to robust backend architectures.
                         </p>
                         <p>
-                            I specialize in <strong>full-stack development</strong>, <strong>UI/UX design</strong>,
-                            and <strong>cybersecurity</strong>. Whether it's crafting a seamless user flow,
-                            designing a brand identity, or writing efficient code —
-                            I'm always exploring the space where technology meets creativity.
-                        </p>
-                        <p>
-                            When I'm not coding, I'm curating playlists, getting lost in books,
-                            or exploring the world through my camera lens. ✨
+                            I specialize in <span className="scribble-highlight" style={{ '--scribble-color': 'var(--tab-green)' }}>full-stack development</span>, UI/UX design, and cybersecurity. Whether it's crafting a seamless user flow, designing a brand identity, or writing efficient code. I'm always exploring the space where technology meets creativity.
                         </p>
                     </div>
 
                     <a href="https://drive.google.com/file/d/1ZgnKKMLQRFEuUDvKkkgVQdTmfloMwUG1/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="about-page__resume-btn">
                         <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" /></svg>
-                        Download CV
+                        <span>Download CV</span>
                     </a>
                 </div>
 

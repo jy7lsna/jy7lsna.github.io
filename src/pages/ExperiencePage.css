@@ -16,21 +16,23 @@
     margin-bottom: 32px;
 }
 
+/* Experience Page Header (Orange Sticker) */
 .experience-page__tape-label {
     display: inline-block;
     font-family: var(--font-handwritten);
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--text-primary);
-    background: var(--tab-bg);
+    color: #111;
+    background: var(--tab-orange);
     padding: 6px 32px;
-    transform: rotate(1.2deg);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--tab-border);
+    transform: rotate(1.5deg);
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="dark"] .experience-page__tape-label {
-    background: #2c2c2e;
+    background: var(--tab-orange);
+    color: #000;
 }
 
 .experience-page__content {

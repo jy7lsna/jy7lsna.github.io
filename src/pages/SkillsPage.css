@@ -14,16 +14,23 @@
     margin-bottom: 32px;
 }
 
+/* Skills Page Header (Green Sticker) */
 .skills-page__tape-label {
     display: inline-block;
     font-family: var(--font-handwritten);
     font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    background: var(--tab-bg);
-    padding: 6px 24px;
-    border: 1px solid var(--tab-border);
-    transform: rotate(-0.5deg);
+    font-weight: 700;
+    color: #111;
+    background: var(--tab-green);
+    padding: 6px 32px;
+    transform: rotate(-1.5deg);
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .skills-page__tape-label {
+    background: var(--tab-green);
+    color: #000;
 }
 
 /* --- Categories container --- */

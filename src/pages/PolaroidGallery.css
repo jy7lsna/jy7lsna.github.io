@@ -1,97 +1,793 @@
-/* ============================================
-   POLAROID GALLERY — Scattered Photo Frames
-   ============================================ */
-.polaroid-gallery {
+.digest-page {
+    width: 100%;
+    height: 100vh;
+    padding: 24px 40px;
+    background-color: var(--paper-color);
+    font-family: var(--font-mono);
+    color: #444;
+    overflow-y: auto;
+    /* Enable vertical scrolling */
     position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Scrollbar styling for a cleaner look */
+.digest-page::-webkit-scrollbar {
+    width: 6px;
+}
+
+.digest-page::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.digest-page::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.digest-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Spread content evenly across both columns */
+    gap: 32px;
+    /* Restored gap between cards */
+    flex: 1;
+    margin-right: 40px;
+    /* Matched to left padding for symmetry */
+}
+
+/* Paper texture overlay (shared with rest of app) */
+.digest-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://www.transparenttextures.com/patterns/p6.png');
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Link Styles */
+.digest-external-link {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: 1px transparent;
+}
+
+.digest-external-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: 0.8;
+}
+
+.article-preview-link,
+.video-link-wrapper,
+.book-link-wrapper {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.article-preview-link:hover .article-text p {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.video-link-wrapper:hover .video-item {
+    transform: translateY(-4px);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.book-link-wrapper:hover .book-item {
+    transform: translateY(-4px);
+}
+
+.book-link-wrapper:hover .book-cover {
+    box-shadow: 2px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.video-item {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.digest-header {
+    margin-bottom: 32px;
+}
+
+.digest-main-title {
+    font-family: var(--font-handwritten) !important;
+    font-size: 3.8rem;
+    font-weight: 700;
+    margin: -10px 0 0 -5px;
+    color: var(--text-primary);
+    text-transform: lowercase;
+    transform: rotate(-2deg);
+    line-height: 1;
+}
+
+.digest-issue-no {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+}
+
+.digest-section {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    transition: none;
+}
+
+/* Remove hover scale/shadows */
+.digest-section:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.section-title {
+    font-family: var(--font-handwritten);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    text-transform: lowercase;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background: currentColor;
+    opacity: 0.1;
+    border-radius: 2px;
+}
+
+/* --- Left Column --- */
+.book-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    flex: 1;
+    /* Stretch to fill section height */
+}
+
+.book-link-wrapper {
+    display: flex;
+}
+
+.book-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex: 1;
+    padding: 8px;
+    /* Room for shadow/lift */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.book-cover {
+    width: 45px;
+    /* Slightly larger thumbnails */
+    height: 70px;
+    /* Taller as requested */
+    background: #f0f0f0;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.book-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 0.5rem;
+    padding: 4px;
+    text-align: center;
+    backdrop-filter: blur(2px);
+}
+
+.book-cover img {
     width: 100%;
     height: 100%;
-    padding: 16px 18px;
-    overflow: hidden;
+    object-fit: cover;
 }
 
-.polaroid-gallery__title {
-    font-family: 'Caveat', cursive, var(--font-grotesk);
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #6e6e73;
-    text-align: center;
-    margin: 0 0 8px 0;
-    letter-spacing: 1px;
-}
-
-/* Individual Polaroid Frame */
-.polaroid-frame {
-    position: absolute;
-    width: 35%;
-    background: #fff;
-    padding: 6px 6px 22px 6px;
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.08),
-        0 6px 20px rgba(0, 0, 0, 0.06);
-    border-radius: 2px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.polaroid-frame:hover {
-    z-index: 10;
-    transform: rotate(0deg) scale(1.08) !important;
-    box-shadow:
-        0 8px 24px rgba(0, 0, 0, 0.12),
-        0 16px 40px rgba(0, 0, 0, 0.08);
-}
-
-/* Placeholder Image Area */
-.polaroid-frame__image {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    background: linear-gradient(135deg, #f0f0f2, #e8e8ed);
-    border-radius: 1px;
+.book-cover--empty {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px;
+    text-align: center;
+    border: 1px dashed #ccc;
+    background: #f9f9f9;
+}
+
+.book-placeholder {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #888;
+}
+
+/* --- Checkbox List (Docs) --- */
+.digest-checkbox-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.digest-checkbox-list li {
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: start;
+    gap: 10px;
+    line-height: 1.3;
+}
+
+.digest-checkbox-list li.interactive-item {
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.1s ease;
+    user-select: none;
+}
+
+.digest-checkbox-list li.interactive-item:hover {
+    color: var(--accent-color);
+    transform: translateX(4px);
+}
+
+.digest-checkbox-list li.interactive-item:active {
+    transform: scale(0.98);
+}
+
+.checkbox {
+    font-size: 0.7rem;
+    color: #999;
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+}
+
+.checkbox.checked {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.article-preview {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    align-items: start;
+}
+
+.article-preview.text-only {
+    padding-left: 8px;
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.article-img {
+    width: 100px;
+    height: 60px;
+    flex-shrink: 0;
+    background: #eee;
+    overflow: hidden;
+    border-radius: 1px;
+}
+
+.article-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.8);
+}
+
+.article-text p {
+    font-size: 0.75rem;
+    margin: 0 0 4px 0;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.article-author {
+    font-size: 0.65rem;
+    color: #999;
+}
+
+/* --- Right Column --- */
+.digest-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.digest-top-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.digest-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.digest-list li {
+    font-size: 0.75rem;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+.list--italic li {
+    font-style: italic;
+    color: #777;
+}
+
+.digest-watched-container {
+    position: relative;
+    padding-left: 20px;
+}
+
+.star-decoration {
+    position: absolute;
+    color: #888;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    opacity: 0.6;
+}
+
+.star--1 {
+    top: -15px;
+    right: 10px;
+    font-size: 0.7rem;
+    color: var(--accent-color);
+}
+
+.star--2 {
+    bottom: 5px;
+    right: 0px;
+    font-size: 0.7rem;
+}
+
+.digest-middle-right {
+    margin-top: 5px;
+}
+
+.pinned-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 16px;
+}
+
+.star-cluster {
+    font-size: 0.65rem;
+    color: #888;
+    letter-spacing: 1px;
+    background: rgba(0, 0, 0, 0.03);
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+/* --- Horizontal Video List --- */
+.video-horizontal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.video-item {
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.video-thumbnail {
+    width: 140px;
+    height: 80px;
+    flex-shrink: 0;
+    position: relative;
+    background: #f0f0f0;
+    border-radius: 2px;
     overflow: hidden;
 }
 
-/* Caption */
-.polaroid-frame__caption {
-    font-family: 'Caveat', cursive, var(--font-grotesk);
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.4) contrast(1.1);
+}
+
+.video-duration {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.5rem;
+    padding: 1px 4px;
+    border-radius: 1px;
+}
+
+.video-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-top: 2px;
+}
+
+.video-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+}
+
+.video-meta {
     font-size: 0.6rem;
-    color: #8e8e93;
+    color: #888;
+    margin: 0;
+}
+
+[data-theme="dark"] .video-title {
+    color: #ddd;
+}
+
+[data-theme="dark"] .video-meta {
+    color: #777;
+}
+
+.pinned-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 60px);
+    gap: 8px;
+}
+
+.pin-item {
+    background: #f0f0f0;
+    overflow: hidden;
+    border-radius: 1px;
+    position: relative;
+}
+
+.playlist-item {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.playlist-item:hover {
+    transform: translateY(-2px);
+}
+
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    opacity: 0.8;
+}
+
+
+
+.video-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 0.4rem;
+    padding: 2px;
     text-align: center;
-    margin-top: 6px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* -------- Dark Mode -------- */
-[data-theme="dark"] .polaroid-gallery__title {
-    color: #aaa;
+.pin-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.2) grayscale(0.5);
 }
 
-[data-theme="dark"] .polaroid-frame {
-    background: #2c2c2e;
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.3),
-        0 6px 20px rgba(0, 0, 0, 0.2);
+.digest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    /* Increased from 25px for more breathing room */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    /* Greyish separator */
+    padding-bottom: 15px;
+    flex-shrink: 0;
 }
 
-[data-theme="dark"] .polaroid-frame:hover {
-    box-shadow:
-        0 8px 24px rgba(0, 0, 0, 0.4),
-        0 16px 40px rgba(0, 0, 0, 0.3);
+.pin-item--placeholder {
+    border: none;
 }
 
-[data-theme="dark"] .polaroid-frame__image {
-    background: linear-gradient(135deg, #3a3a3c, #2c2c2e);
+.digest-in-out {
+    display: flex;
+    gap: 35px;
+    /* Compressed horizontal gap */
+    padding-top: 0;
+    position: relative;
+    align-items: stretch;
+    justify-content: center;
+    /* Center them */
 }
 
-[data-theme="dark"] .polaroid-frame__image svg {
-    fill: rgba(255, 255, 255, 0.12);
+.digest-page {
+    width: 100%;
+    height: 100vh;
+    padding: 24px 40px;
+    /* Balanced to match About page */
+    background: transparent;
+    font-family: var(--font-mono);
+    color: #444;
+    /* Dark text for light theme by default */
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-[data-theme="dark"] .polaroid-frame__caption {
-    color: #999;
+/* Remove texture overlay */
+.digest-page::before {
+    display: none;
+}
+
+.digest-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    flex: 1;
+    margin-right: 40px;
+}
+
+.digest-left,
+.digest-right {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    /* Slightly increased for better breathing room */
+}
+
+/* Strip all background and containers */
+.digest-section {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    border: none;
+}
+
+.in-out-separator {
+    display: none;
+    /* Strip the separator line */
+}
+
+.section-title {
+    font-family: var(--font-handwritten);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    border: none;
+    padding: 0;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.book-item {
+    background: transparent;
+}
+
+.book-cover {
+    display: none;
+    /* User just wants text */
+}
+
+.book-cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Changed to contain to see full cover */
+    background: #fff;
+}
+
+.book-title {
+    font-size: 0.65rem;
+    /* Tighter font for grid */
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.1;
+    color: #444;
+    font-family: var(--font-mono) !important;
+    /* Force override */
+}
+
+.book-meta {
+    font-size: 0.55rem;
+    color: #888;
+    margin: 1px 0 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80px;
+    font-family: var(--font-mono);
+}
+
+.digest-bottom-right {
+    flex-grow: 1;
+}
+
+/* Maintain single-page fit by compressing gaps further */
+.digest-page {
+    padding: 10px 30px;
+    /* Tighter padding */
+}
+
+.digest-header {
+    margin-bottom: 15px;
+}
+
+.video-horizontal-list {
+    gap: 12px;
+}
+
+.video-thumbnail {
+    height: 85px;
+}
+
+.digest-stack-container {
+    display: flex;
+    /* Changed from grid to flex-column to avoid wrapping */
+    flex-direction: column;
+    gap: 15px;
+    border-top: none;
+    /* Removed white line */
+    padding-top: 10px;
+}
+
+.digest-stack-container .section-title {
+    white-space: nowrap;
+    /* Force one line */
+}
+
+.in-out-section {
+    flex: 1;
+}
+
+.in-out-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #333;
+    text-transform: lowercase;
+    font-family: var(--font-mono);
+}
+
+.digest-list--small li {
+    font-size: 0.7rem;
+    color: #777;
+}
+
+.digest-footer {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: none;
+    flex-shrink: 0;
+}
+
+.doing-text {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #666;
+    max-width: 80%;
+}
+
+/* Custom Scrollbar for the Digest feel */
+.digest-page::-webkit-scrollbar {
+    width: 4px;
+}
+
+.digest-page::-webkit-scrollbar-thumb {
+    background: #eee;
+}
+
+[data-theme="dark"] .digest-page {
+    background-color: var(--paper-color-dark);
+    color: #eee;
+    /* Brighter body text */
+}
+
+[data-theme="dark"] .digest-title,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .digest-main-title {
+    color: #fff;
+    /* White titles for max contrast */
+}
+
+[data-theme="dark"] .digest-section {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+[data-theme="dark"] .book-cover--empty,
+[data-theme="dark"] .article-img,
+[data-theme="dark"] .pin-item {
+    background: #2a2a2a;
+    border-color: #444;
+}
+
+[data-theme="dark"] .digest-list li,
+[data-theme="dark"] .article-text p,
+[data-theme="dark"] .doing-text,
+[data-theme="dark"] .video-meta,
+[data-theme="dark"] .book-meta,
+[data-theme="dark"] .article-author,
+[data-theme="dark"] .digest-checkbox-list li {
+    color: #bbb;
+    /* Brighter muted text */
+}
+
+[data-theme="dark"] .video-title,
+[data-theme="dark"] .book-title,
+[data-theme="dark"] .in-out-title,
+[data-theme="dark"] .section-title {
+    color: #eee;
+}
+
+[data-theme="dark"] .in-out-separator {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .digest-footer {
+    border-top: none;
+}
+
+[data-theme="dark"] .checkbox {
+    color: #666;
+    /* Subtle unselected checkbox */
+}
+
+[data-theme="dark"] .checkbox.checked {
+    color: var(--accent-color);
 }

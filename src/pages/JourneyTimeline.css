@@ -116,8 +116,6 @@
 
 /* scattered sticky notes */
 .sticky-note--timeline {
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    background: var(--note-color);
     padding: 12px 8px 6px;
     transition: transform 0.3s ease, z-index 0s, box-shadow 0.3s;
 }

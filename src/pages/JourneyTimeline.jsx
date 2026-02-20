@@ -27,8 +27,8 @@ const TESTIMONIALS = [
         color: '#FFECB3',
         pinColor: '#FF5252',
         rotate: -2.5,
-        top: '8%',
-        left: '2%'
+        top: '12%',
+        left: '10%'
     },
     {
         quote: 'Jyolsna brings creativity and technical depth to every project. A true full-stack talent.',
@@ -38,7 +38,7 @@ const TESTIMONIALS = [
         pinColor: '#388E3C',
         rotate: 1.8,
         top: '15%',
-        right: '2%'
+        right: '12%'
     },
     {
         quote: 'Amazing to collaborate with during hackathons. Always pushes beyond expectations.',
@@ -47,8 +47,8 @@ const TESTIMONIALS = [
         color: '#BBDEFB',
         pinColor: '#1976D2',
         rotate: -1.5,
-        top: '40%',
-        left: '4%'
+        top: '42%',
+        left: '8%'
     },
     {
         quote: 'Her UI/UX sense is impeccable. Every interface she designs feels polished.',
@@ -57,8 +57,8 @@ const TESTIMONIALS = [
         color: '#E1BEE7',
         pinColor: '#7B1FA2',
         rotate: 2.2,
-        top: '45%',
-        right: '5%'
+        top: '44%', /* Moved up from 48% */
+        right: '10%'
     },
     {
         quote: 'Always eager to learn and take on challenges. A great problem solver.',
@@ -67,8 +67,8 @@ const TESTIMONIALS = [
         color: '#FFCCBC',
         pinColor: '#E64A19',
         rotate: -1.2,
-        bottom: '8%',
-        left: '2%'
+        bottom: '15%',
+        left: '12%'
     },
     {
         quote: 'Exceptional communication skills and technical proficiency. Highly recommended!',
@@ -77,8 +77,8 @@ const TESTIMONIALS = [
         color: '#F0F4C3',
         pinColor: '#AFB42B',
         rotate: 1.1,
-        bottom: '12%',
-        right: '2%'
+        bottom: '10%', /* Moved down from 18% */
+        right: '10%'
     },
 ];
 

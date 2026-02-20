@@ -1,6 +1,6 @@
 # 📓 Scrapbook Portfolio — Jyolsna Maria Joemon
 
-A visually stunning, interactive, and deeply personalized portfolio website designed with a **Notebook & Scrapbook aesthetic**. This project transforms the traditional single-page portfolio into a multi-dimensional digital notebook, complete with handwritten notes, polaroids, and interactive widgets.
+A visually stunning, interactive, and deeply personalized Portfolio website designed with a **Notebook & Scrapbook aesthetic**. This project transforms the traditional single-page Portfolio into a multi-dimensional digital notebook, complete with handwritten notes, polaroids, and interactive widgets.
 
 ✨ **Live Demo:** [https://jy7lsna.github.io/](https://jy7lsna.github.io/)
 
@@ -8,7 +8,7 @@ A visually stunning, interactive, and deeply personalized portfolio website desi
 
 ## 🎨 Aesthetic & UX Design
 
-The portfolio is built around a **Physical Notebook UI** concept, featuring:
+The Portfolio is built around a **Physical Notebook UI** concept, featuring:
 - **Notebook Paper**: Subtle grid/line textures with realistic "spiral binding" and multi-colored pastel bookmarks.
 - **Scrapbook Elements**: Scattered polaroids, 3D push-pins, "washi tape" strips, coffee stains, and hand-drawn stickers.
 - **Micro-Interactions**: Page-turning transition animations, percussive tab-click sounds, and light/dark mode styling that shifts from a "daytime study" to a "nighttime lounge" vibe.

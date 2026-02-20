@@ -14,6 +14,14 @@
     align-items: stretch;
     width: calc(var(--spiral-width) + var(--notebook-width) + var(--tab-width));
     height: var(--notebook-height);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center center;
+    transform-style: preserve-3d;
+}
+
+.notebook.notebook--open {
+    /* Shift right to center the spiral/spread */
+    transform: translateX(calc(var(--notebook-width) / 2.3));
 }
 
 /* --- Pages Container --- */
@@ -21,7 +29,7 @@
     position: relative;
     width: var(--notebook-width);
     height: 100%;
-    perspective: 2200px;
+    perspective: 2500px;
     perspective-origin: left center;
 }
 
@@ -54,12 +62,15 @@
 .page__front {
     background-color: var(--paper-color);
     z-index: 1;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
 }
 
 .page__back {
     background-color: var(--paper-color-dark);
     transform: rotateY(180deg);
     z-index: 0;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.12);
+    /* Shadow on the LEFT for outer edge */
 }
 
 /* Subtle paper edge shadow on the back */
@@ -83,8 +94,9 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(to right,
-            rgba(0, 0, 0, 0.3) 0%,
-            rgba(0, 0, 0, 0.1) 30%,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(0, 0, 0, 0.15) 20%,
+            rgba(0, 0, 0, 0.05) 50%,
             transparent 100%);
     z-index: 9999;
     pointer-events: none;

@@ -12,28 +12,15 @@
 
 .currently-learning__title {
     font-family: 'Caveat', cursive, var(--font-grotesk);
-    font-size: 1.8rem;
-    /* Increased size */
-    font-weight: 700;
-    color: var(--accent-coral);
-    /* Use accent color */
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #6e6e73;
     text-align: center;
-    margin: 0 0 30px 0;
+    margin: 0 0 10px 0;
     letter-spacing: 1px;
     position: relative;
     display: inline-block;
     width: 100%;
-}
-
-.currently-learning__title::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 40%;
-    width: 20%;
-    height: 2px;
-    background: rgba(var(--accent-coral-rgb), 0.3);
-    border-radius: 2px;
 }
 
 .currently-learning__list {

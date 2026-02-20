@@ -120,7 +120,7 @@
 }
 
 [data-theme="dark"] .tab-nav__tab {
-    background: color-mix(in srgb, var(--tab-bg-custom) 30%, #1e1e22);
+    background: color-mix(in srgb, var(--tab-bg-custom) 50%, #1e1e22);
 }
 
 [data-theme="dark"] .tab-nav__tab--active {

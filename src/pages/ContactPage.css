@@ -13,21 +13,23 @@
     margin-bottom: 32px;
 }
 
+/* Contact Page Header (Yellow Sticker) */
 .contact-page__tape-label {
     display: inline-block;
     font-family: var(--font-handwritten);
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--text-primary);
-    background: var(--tab-bg);
+    color: #111;
+    background: var(--tab-yellow);
     padding: 6px 32px;
     transform: rotate(-1.5deg);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--tab-border);
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="dark"] .contact-page__tape-label {
-    background: #2c2c2e;
+    background: var(--tab-yellow);
+    color: #000;
 }
 
 .contact-page__paper {
@@ -169,35 +171,42 @@
     line-height: 1.4;
 }
 
-/* Resume download */
+/* Resume download (Unified Clean Rectangular) */
 .contact-page__resume-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
+    gap: 10px;
+    padding: 10px 24px;
     margin-left: 6px;
     background: #222;
+    border: 1.5px solid #222;
     color: #fff;
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
+    font-family: var(--font-grotesk);
+    font-size: 0.85rem;
     font-weight: 500;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-transform: none;
     text-decoration: none;
-    border-radius: 24px;
-    transition: all 0.25s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: fit-content;
 }
 
 .contact-page__resume-btn:hover {
-    background: #444;
+    background: #fff;
+    color: #000;
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .contact-page__resume-btn:hover {
+    border-color: #ddd;
 }
 
 .contact-page__resume-btn svg {
     flex-shrink: 0;
+    color: inherit;
 }
 
 @media (max-width: 900px) {

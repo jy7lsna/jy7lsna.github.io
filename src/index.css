@@ -19,7 +19,8 @@ html {
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #111111;
+  background: transparent;
+  /* Changed from #111111 to avoid flash */
   color: var(--text-primary);
   overflow: hidden;
   width: 100vw;
@@ -63,26 +64,20 @@ body {
   --accent-coral: #ff6b6b;
   --accent-amber: #f59e0b;
 
-  /* Pastel Tab Colors */
-  --tab-pink: #ffdae0;
-  --tab-blue: #d0e8ff;
-  --tab-green: #d2f2d4;
-  --tab-orange: #ffe8d1;
-  --tab-yellow: #fff9db;
+  /* "Happy Brights" Tab Colors (Vibrant but Soft) */
+  --tab-pink: #ff8fab;
+  --tab-blue: #72a1ed;
+  --tab-green: #80ed99;
+  --tab-orange: #ffb347;
+  --tab-yellow: #ffd93d;
 
-  /* App Background Blobs (Light - Subtle Pastel) */
+  /* App Background Blobs (Light - Vibrant Pastel Glow) */
   --app-bg: #fffbf7;
-  /* Cleaner light background */
-  --blob-color-1: rgba(255, 182, 193, 0.2);
-  /* Subtle Pink */
-  --blob-color-2: rgba(173, 216, 230, 0.18);
-  /* Subtle Blue */
-  --blob-color-3: rgba(152, 251, 152, 0.18);
-  /* Subtle Mint */
-  --blob-color-4: rgba(221, 160, 221, 0.18);
-  /* Subtle Lavender */
-  --blob-color-5: rgba(255, 218, 185, 0.2);
-  /* Subtle Peach */
+  --blob-color-1: rgba(255, 105, 180, 0.3);
+  --blob-color-2: rgba(100, 180, 255, 0.25);
+  --blob-color-3: rgba(50, 230, 150, 0.25);
+  --blob-color-4: rgba(180, 120, 255, 0.25);
+  --blob-color-5: rgba(255, 180, 120, 0.25);
 
   /* Text */
   --text-primary: #222;
@@ -179,6 +174,14 @@ h4 {
 /* --- Paper Texture Mixin (applied via class) --- */
 .paper-texture {
   background-color: var(--paper-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background-image:
     repeating-linear-gradient(0deg,
       transparent,
@@ -190,9 +193,185 @@ h4 {
       transparent 2px,
       var(--paper-grain) 2px,
       var(--paper-grain) 3px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* --- Selection --- */
+.paper-texture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: white;
+  filter: url(#crumpled-filter);
+  mix-blend-mode: multiply;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Ensure content stays above the texture layers */
+.paper-texture>* {
+  position: relative;
+  z-index: 3;
+}
+
+/* --- Artisanal Animations --- */
+
+/* Sticker Wobble (for settling) */
+@keyframes sticker-wobble {
+  0% {
+    transform: rotate(0deg) scale(1.05);
+  }
+
+  25% {
+    transform: rotate(-5deg) scale(1.08);
+  }
+
+  50% {
+    transform: rotate(3deg) scale(1.03);
+  }
+
+  75% {
+    transform: rotate(-2deg) scale(1.05);
+  }
+
+  100% {
+    transform: rotate(0deg) scale(1.05);
+  }
+}
+
+/* Washi Tape Wobble */
+@keyframes washi-wobble {
+  0% {
+    transform: rotate(0deg) skewX(0);
+  }
+
+  25% {
+    transform: rotate(-1deg) skewX(2deg);
+  }
+
+  75% {
+    transform: rotate(1deg) skewX(-2deg);
+  }
+
+  100% {
+    transform: rotate(0deg) skewX(0);
+  }
+}
+
+/* --- Hand-Drawn Scribbles --- */
+.scribble-highlight {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.scribble-highlight::before {
+  content: '';
+  position: absolute;
+  inset: -2px -6px;
+  background: var(--scribble-color, var(--tab-pink));
+  opacity: 0.35;
+  z-index: -1;
+  transform: rotate(-1.5deg) skewX(-10deg);
+  border-radius: 2px 4px 3px 6px;
+}
+
+[data-theme="dark"] .scribble-highlight::before {
+  opacity: 0.25;
+}
+
+.scribble-circle {
+  position: relative;
+  display: inline-block;
+  padding: 0 4px;
+}
+
+.scribble-circle::after {
+  content: '';
+  position: absolute;
+  inset: -4px -8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M98,20 C98,30 80,38 50,38 C20,38 2,30 2,20 C2,10 20,2 50,2 C80,2 98,10 98,20 Z' fill='none' stroke='%23ff8fab' stroke-width='1.5' stroke-linecap='round' vector-effect='non-scaling-stroke' stroke-dasharray='300' stroke-dashoffset='0'/%3E%3Cpath d='M95,15 C95,25 78,35 48,35 C18,35 5,25 5,15 C5,5 22,5 52,5 C82,5 95,15 95,25' fill='none' stroke='%23ff8fab' stroke-width='1' stroke-linecap='round' vector-effect='non-scaling-stroke' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scribble-circle--bold::after {
+  content: '';
+  position: absolute;
+  inset: -10% -15%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M95,50 C95,75 75,95 50,95 C25,95 5,75 5,50 C5,25 25,5 50,5 C75,5 95,25 95,50 M90,40 C92,45 92,55 88,60' fill='none' stroke='%23ff6b6b' stroke-width='3' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scribble-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.scribble-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0,5 Q25,2 50,5 T100,5' fill='none' stroke='%2372a1ed' stroke-width='2' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+
+.scribble-arrow-down {
+  position: relative;
+  display: inline-block;
+}
+
+.scribble-arrow-down::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 35px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 40' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10,2 L10,38 M2,30 L10,38 L18,30'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.6;
+}
+
+[data-theme="dark"] .scribble-arrow-down::after {
+  filter: invert(1);
+}
+
+.living-sticker {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+.living-sticker:hover {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15));
+}
+
+.living-sticker--settle {
+  animation: sticker-wobble 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.living-washi {
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.living-washi--settle {
+  animation: washi-wobble 0.8s ease-in-out;
+}
+
+/* Selection */
 ::selection {
   background: var(--accent-blue);
   color: white;

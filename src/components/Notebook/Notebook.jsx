@@ -34,8 +34,8 @@ const TABS = PAGES.filter(p => p.tab).map((p, i) => ({
 export default function Notebook() {
     const [currentPage, setCurrentPage] = useState(0);
     const [hoveredSide, setHoveredSide] = useState(null);
-
     const [isAnimating, setIsAnimating] = useState(false);
+
     const pageRefs = useRef([]);
     const shadowRef = useRef(null);
     const totalPages = PAGES.length;
@@ -61,27 +61,40 @@ export default function Notebook() {
         const shadow = shadowRef.current;
         const tl = gsap.timeline({
             onComplete: () => {
-                pageEl.style.zIndex = '';
+                // Ensure state updates before clearing the inline zIndex
                 setCurrentPage(prev => prev + 1);
                 setIsAnimating(false);
+                setTimeout(() => {
+                    if (pageEl) pageEl.style.zIndex = '';
+                }, 0);
             }
         });
 
         tl.to(shadow, {
             opacity: 0.4,
             duration: 0.35,
-            ease: 'power2.in',
+            ease: 'power3.in',
+            force3D: true
         }, 0);
         tl.to(shadow, {
             opacity: 0,
             duration: 0.35,
-            ease: 'power2.out',
+            ease: 'power3.out',
+            force3D: true
         }, 0.35);
         tl.to(pageEl, {
             rotateY: -180,
-            duration: 0.7,
-            ease: 'power2.inOut',
+            z: 80,
+            duration: 0.35,
+            ease: 'power3.in',
+            force3D: true
         }, 0);
+        tl.to(pageEl, {
+            z: 0,
+            duration: 0.35,
+            ease: 'power3.out',
+            force3D: true
+        }, 0.35);
     }, [isAnimating, currentPage, totalPages]);
 
     const flipBackward = useCallback(() => {
@@ -97,27 +110,39 @@ export default function Notebook() {
         const shadow = shadowRef.current;
         const tl = gsap.timeline({
             onComplete: () => {
-                pageEl.style.zIndex = '';
                 setCurrentPage(prev => prev - 1);
                 setIsAnimating(false);
+                setTimeout(() => {
+                    if (pageEl) pageEl.style.zIndex = '';
+                }, 0);
             }
         });
 
         tl.to(shadow, {
             opacity: 0.4,
             duration: 0.35,
-            ease: 'power2.in',
+            ease: 'power3.in',
+            force3D: true
         }, 0);
         tl.to(shadow, {
             opacity: 0,
             duration: 0.35,
-            ease: 'power2.out',
+            ease: 'power3.out',
+            force3D: true
         }, 0.35);
         tl.to(pageEl, {
             rotateY: 0,
-            duration: 0.7,
-            ease: 'power2.inOut',
+            z: 80,
+            duration: 0.35,
+            ease: 'power3.in',
+            force3D: true
         }, 0);
+        tl.to(pageEl, {
+            z: 0,
+            duration: 0.35,
+            ease: 'power3.out',
+            force3D: true
+        }, 0.35);
     }, [isAnimating, currentPage, totalPages]);
 
     const goToPage = useCallback((targetIndex) => {
@@ -152,9 +177,18 @@ export default function Notebook() {
 
             tl.to(pageEl, {
                 rotateY: direction === 'forward' ? -180 : 0,
-                duration: 0.4,
-                ease: 'power2.inOut',
-            }, i * 0.12);
+                z: 40,
+                duration: 0.25,
+                ease: 'power3.in',
+                force3D: true
+            }, i * 0.15);
+
+            tl.to(pageEl, {
+                z: 0,
+                duration: 0.25,
+                ease: 'power3.out',
+                force3D: true
+            }, (i * 0.15) + 0.25);
         });
 
         // Shadow pulse
@@ -224,9 +258,9 @@ export default function Notebook() {
     }, [flipForward, flipBackward]);
 
     return (
-        <div className="notebook-container" role="main" aria-label="Interactive portfolio notebook">
+        <div className="notebook-container" role="main" aria-label="Interactive Portfolio notebook">
 
-            <div className="notebook">
+            <div className={`notebook ${currentPage > 0 ? 'notebook--open' : ''}`}>
                 <SpiralBinding />
 
                 <div className="pages-container">
@@ -248,7 +282,10 @@ export default function Notebook() {
                                     <PageComponent isActive={index === currentPage} pageIndex={index} />
                                 </div>
                                 <div className="page__back paper-texture">
-                                    {page.backContent && <page.backContent />}
+                                    {page.backContent && (() => {
+                                        const BackComponent = page.backContent;
+                                        return <BackComponent />;
+                                    })()}
                                 </div>
                             </div>
                         );
