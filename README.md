@@ -1,4 +1,4 @@
-# 📓 Scrapbook Portfolio — Jyolsna Maria Joemon
+# Scrapbook Portfolio — Jyolsna Maria Joemon
 
 A visually stunning, interactive, and deeply personalized Portfolio website designed with a **Notebook & Scrapbook aesthetic**. This project transforms the traditional single-page Portfolio into a multi-dimensional digital notebook, complete with handwritten notes, polaroids, and interactive widgets.
 
@@ -6,7 +6,7 @@ A visually stunning, interactive, and deeply personalized Portfolio website desi
 
 ---
 
-## 🎨 Aesthetic & UX Design
+## Aesthetic & UX Design
 
 The Portfolio is built around a **Physical Notebook UI** concept, featuring:
 - **Notebook Paper**: Subtle grid/line textures with realistic "spiral binding" and multi-colored pastel bookmarks.
@@ -15,25 +15,25 @@ The Portfolio is built around a **Physical Notebook UI** concept, featuring:
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
-### 📅 Interactive 1:1 Meeting Calendar
+### Interactive 1:1 Meeting Calendar
 Integrated with **Calendly**, visitors can select available dates and time slots directly on a scrapbook-themed calendar grid to schedule a meet with me.
 
-### ✅ Habit Tracker
+### Habit Tracker
 A persistent, state-aware widget where I track my daily progress. It features interactive toggles and a dedicated detail view modal for historical insights.
 
-### 🎧 Live Spotify Integration
+### Live Spotify Integration
 A theme-aware music widget showing my top tracks and what I'm currently listening to (Raindance!), adding a personal "vibe" to the digital space.
 
-### ⌨️ Interactive Sections
+### Interactive Sections
 - **Cover Page**: Features a smooth typing animation for the subtitle and a polaroid gallery.
 - **Experience Log**: A detailed, categorized timeline tracing my journey from college to freelance web design.
 - **Skills & Learning**: A list of core competencies and "Currently Learning" progress bars, styled without distracting card borders for a raw, handwritten feel.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: [React.js](https://reactjs.org/) (Functional Components + Hooks)
 - **Tooling**: [Vite](https://vitejs.dev/)
@@ -44,7 +44,7 @@ A theme-aware music widget showing my top tracks and what I'm currently listenin
 
 ---
 
-## 💻 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js (version 14.x or higher)
@@ -70,7 +70,7 @@ A theme-aware music widget showing my top tracks and what I'm currently listenin
 
 ---
 
-## 📈 Roadmap
+## Roadmap
 - [x] Responsive layout for all device sizes
 - [x] Dark Mode support with persistence
 - [x] Calendar & Calendly integration
